@@ -4,7 +4,11 @@ BlueStageViridianCityWildMons: ; 0x1144d
 	dw SQUIRTLE
 	dw SQUIRTLE
 	dw SQUIRTLE
-	dw SQUIRTLE
+IF DEF(_TPP)
+	dw NIDORAN_F
+ELSE
+    dw SQUIRTLE
+ENDC
 	dw SPEAROW
 	dw NIDORAN_F
 	dw NIDORAN_F
@@ -19,8 +23,13 @@ BlueStageViridianCityWildMons: ; 0x1144d
 BlueStageViridianCityonsRare: ; 0x1145d
 	dw BULBASAUR
 	dw BULBASAUR
-	dw BULBASAUR
-	dw SQUIRTLE
+IF DEF(_TPP)
+	dw NIDORAN_F
+	dw NIDORAN_F
+ELSE
+    dw SQUIRTLE
+    dw BULBASAUR
+ENDC
 	dw SPEAROW
 	dw SPEAROW
 	dw NIDORAN_F
@@ -62,8 +71,13 @@ BlueStageViridianForestWildMonsRare: ; 0x1147d
 	dw PIDGEY
 	dw RATTATA
 	dw RATTATA
+IF DEF(TPP_)
+	dw PIDGEY
+	dw RATTATA
+ELSE
 	dw PIKACHU
 	dw PIKACHU
+ENDC
 	dw PIKACHU
 	dw PIKACHU
 	dw PIKACHU
@@ -151,7 +165,11 @@ BlueStageVermilionStreetsWildMons: ; 0x114cd
 	dw MEOWTH
 	dw BELLSPROUT
 	dw BELLSPROUT
-	dw SHELLDER
+IF DEF(_TPP)
+	dw TENTACOOL
+ELSE
+    dw SHELLDER
+ENDC
 	dw SHELLDER
 	dw SHELLDER
 	dw DROWZEE
@@ -390,7 +408,11 @@ BlueStageCinnabarIslandWildMonsRare: ; 0x1159d
 	dw MAGMAR
 	dw MAGMAR
 	dw MAGMAR
+IF DEF(TPP_)
+    dw MAGMAR
+ELSE
 	dw AERODACTYL
+ENDC
 	dw AERODACTYL
 	dw AERODACTYL
 

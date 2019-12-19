@@ -24,8 +24,13 @@ RedStagePalletTownWildMonsRare: ; 0x112dc
 	dw CHARMANDER
 	dw PIDGEY
 	dw RATTATA
+IF DEF(_TPP)
+    dw CHARMANDER
+    dw CHARMANDER
+ELSE
 	dw NIDORAN_M
 	dw NIDORAN_M
+ENDC
 	dw NIDORAN_M
 	dw POLIWAG
 	dw POLIWAG
@@ -63,8 +68,13 @@ RedStageViridianForestWildMonsRare: ; 0x112fc
 	dw PIDGEY
 	dw RATTATA
 	dw RATTATA
+IF DEF(_TPP)
+	dw WEEDLE
+	dw WEEDLE
+ELSE
 	dw PIKACHU
 	dw PIKACHU
+ENDC
 	dw PIKACHU
 	dw PIKACHU
 	dw PIKACHU
@@ -152,7 +162,11 @@ RedStageVermilionSeasideWildMons: ; 0x1134c
 	dw ODDISH
 	dw MANKEY
 	dw MANKEY
-	dw SHELLDER
+IF DEF(_TPP)
+	dw TENTACOOL
+ELSE
+    dw SHELLDER
+ENDC
 	dw SHELLDER
 	dw SHELLDER
 	dw DROWZEE
@@ -247,8 +261,13 @@ RedStageLavenderTownWildMonsRare: ; 0x1139c
 	dw ELECTABUZZ
 	dw ELECTABUZZ
 	dw ELECTABUZZ
+IF DEF(_TPP)
+    dw PIKACHU
+    dw PIKACHU
+ELSE
 	dw ZAPDOS
 	dw ZAPDOS
+ENDC
 	dw ZAPDOS
 
 RedStageCyclingRoadWildMons: ; 0x113ac
