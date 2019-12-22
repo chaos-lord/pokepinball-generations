@@ -138,11 +138,17 @@ ExitFieldSelectScreen: ; 0xd774
 	ld a, [wFieldSelectPressedButton]
 	bit BIT_A_BUTTON, a
 	jr z, .pressedB
+ID DEF(TPP_)
+    ld a, [wScriptMode]
+	sub 1
+	jr z, .loadViaScript
+ENDC
 	ld a, [wWhichFieldSelectRegion]
 	sla a
 	ld c, a
 	ld a, [wSelectedFieldIndex]
 	add c
+.ScriptLoadComplete
 	ld c, a
 	ld b, $0
 	ld hl, StartingStages
@@ -164,6 +170,12 @@ ExitFieldSelectScreen: ; 0xd774
 	xor a
 	ld [wScreenState], a
 	ret
+
+ID DEF(TPP_)
+.loadViaScript
+    ld a ,[wFieldToStart]
+    jr .ScriptLoadComplete
+ENDC
 
 .pressedB
 	pop af

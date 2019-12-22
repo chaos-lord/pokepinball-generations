@@ -2559,7 +2559,22 @@ wWhichFieldSelectRegion:: ; 0xdaa4
 ; 0 = KANTO
 ; 1 = JOHTO
 	ds $1
+	
+IF DEF(TPP_)
+wCollectBadge::
+    ds 
 
+wUpperBadgeToCollect::
+    ds 1
+wLowerBadgeToCollect::
+    ds 1
+    
+wScriptMode::
+    ds 1
+    
+wFieldToStart::
+    ds 1
+ENDC
 
 SECTION "Audio RAM", WRAMX
 wdd00:: ; 0xdd00

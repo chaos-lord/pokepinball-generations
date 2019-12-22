@@ -358,11 +358,23 @@ PlaceEvolutionInParty:
 	cp $ff
 	ret z
 .continue
+IF DEF(TPP_)
+	ld a, [wCurrentEvolutionMon]
+	ld [hli], a
+	ld [wUpperBadgeToCollect], a
+	ld a, [wCurrentEvolutionMon + 1]
+	ld [hl], a
+	ld [wLowerBadgeToCollect], a
+	ld a, 1
+    ld [wCollectBadge], a
+ELSE
 	ld a, [wCurrentEvolutionMon]
 	ld [hli], a
 	ld a, [wCurrentEvolutionMon + 1]
 	ld [hl], a
+ENDC
 	ret
+	
 .breedingMode
 	ld a, [wNumPartyMons]
 	ld c, a
@@ -370,10 +382,21 @@ PlaceEvolutionInParty:
 	ld hl, wPartyMons
 	add hl, bc
 	add hl, bc
+IF DEF(TPP_)
+	ld a, [wCurrentEvolutionMon]
+	ld [hli], a
+	ld [wUpperBadgeToCollect], a
+	ld a, [wCurrentEvolutionMon + 1]
+	ld [hl], a
+	ld [wLowerBadgeToCollect], a
+	ld a, 1
+    ld [wCollectBadge], a
+ELSE
 	ld a, [wCurrentEvolutionMon]
 	ld [hli], a
 	ld a, [wCurrentEvolutionMon + 1]
 	ld [hl], a
+ENDC
 	ld a, [wNumPartyMons]
 	inc a
 	ld [wNumPartyMons], a
