@@ -358,7 +358,7 @@ PlaceEvolutionInParty:
 	cp $ff
 	ret z
 .continue
-IF DEF(TPP_)
+IF DEF(_TPP)
 	ld a, [wCurrentEvolutionMon]
 	ld [hli], a
 	ld [wUpperBadgeToCollect], a
@@ -382,7 +382,7 @@ ENDC
 	ld hl, wPartyMons
 	add hl, bc
 	add hl, bc
-IF DEF(TPP_)
+IF DEF(_TPP)
 	ld a, [wCurrentEvolutionMon]
 	ld [hli], a
 	ld [wUpperBadgeToCollect], a

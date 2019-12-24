@@ -1111,7 +1111,7 @@ AddCaughtPokemonToParty: ; 0x1073d
 	ld hl, wPartyMons
 	add hl, bc
 	add hl, bc
-IF DEF(TPP_)
+IF DEF(_TPP)
 	ld a, [wCurrentCatchEmMon]
 	ld [hli], a
 	ld [wUpperBadgeToCollect], a

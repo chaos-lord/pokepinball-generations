@@ -71,7 +71,7 @@ BlueStageViridianForestWildMonsRare: ; 0x1147d
 	dw PIDGEY
 	dw RATTATA
 	dw RATTATA
-IF DEF(TPP_)
+IF DEF(_TPP)
 	dw PIDGEY
 	dw RATTATA
 ELSE
@@ -408,7 +408,7 @@ BlueStageCinnabarIslandWildMonsRare: ; 0x1159d
 	dw MAGMAR
 	dw MAGMAR
 	dw MAGMAR
-IF DEF(TPP_)
+IF DEF(_TPP)
     dw MAGMAR
 ELSE
 	dw AERODACTYL

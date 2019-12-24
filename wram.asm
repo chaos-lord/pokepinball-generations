@@ -2560,9 +2560,9 @@ wWhichFieldSelectRegion:: ; 0xdaa4
 ; 1 = JOHTO
 	ds $1
 	
-IF DEF(TPP_)
+IF DEF(_TPP)
 wCollectBadge::
-    ds 
+    ds 1
 
 wUpperBadgeToCollect::
     ds 1

@@ -138,7 +138,7 @@ ExitFieldSelectScreen: ; 0xd774
 	ld a, [wFieldSelectPressedButton]
 	bit BIT_A_BUTTON, a
 	jr z, .pressedB
-IF DEF(TPP_)
+IF DEF(_TPP)
     ld a, [wScriptMode]
 	sub 1
 	jr z, .loadViaScript
@@ -171,7 +171,7 @@ ENDC
 	ld [wScreenState], a
 	ret
 
-IF DEF(TPP_)
+IF DEF(_TPP)
 .loadViaScript
     ld a ,[wFieldToStart]
     jr .ScriptLoadComplete
