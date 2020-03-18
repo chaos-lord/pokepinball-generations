@@ -105,10 +105,12 @@ ResolveSilverStagePinballLaunchCollision: ; 0x1c7d7
 ChooseInitialMap_SilverField: ; 0x1c839
 ; While waiting to launch the pinball, this quickly rotates the billboard with the initial
 ; maps the player can start on.
-	ld a, [hGameBoyColorFlag]
-	and a
-	callba nz, LoadGreyBillboardPaletteData
 .showNextMap
+IF DEF(_TPP)
+    ld a, [wScriptMode]
+	sub 1
+	jr z, .loadViaScript
+ENDC
 	ld a, [wInitialMapSelectionIndex]
 	inc a
 	cp $7  ; number of maps to choose from at the start of play
@@ -121,6 +123,7 @@ ChooseInitialMap_SilverField: ; 0x1c839
 	ld hl, SilverStageInitialMaps
 	add hl, bc
 	ld a, [hl]
+.returnFromScriptLoad
 	ld [wCurrentMap], a
 	push af
 	lb de, $00, $48
@@ -149,6 +152,12 @@ ChooseInitialMap_SilverField: ; 0x1c839
 	xor a
 	ld [wNumMapMoves], a
 	ret
+	
+IF DEF(_TPP)
+.loadViaScript
+    ld a, [wMapToStart]
+    jr .returnFromScriptLoad
+ENDC
 
 SilverStageInitialMaps: ; 0x1c8af
 	db NEW_BARK_TOWN

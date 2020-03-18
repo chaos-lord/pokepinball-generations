@@ -2574,6 +2574,9 @@ wScriptMode::
     
 wFieldToStart::
     ds 1
+    
+wMapToStart::
+    ds 1
 ENDC
 
 SECTION "Audio RAM", WRAMX

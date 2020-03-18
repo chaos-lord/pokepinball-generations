@@ -2038,10 +2038,12 @@ ResolveGoldStagePinballLaunchCollision: ; 0x1652d
 ChooseInitialMap_GoldField: ; 0x1658f
 ; While waiting to launch the pinball, this quickly rotates the billboard with the initial
 ; maps the player can start on.
-	ld a, [hGameBoyColorFlag]
-	and a
-	callba nz, LoadGreyBillboardPaletteData
 .showNextMap
+IF DEF(_TPP)
+    ld a, [wScriptMode]
+	sub 1
+	jr z, .loadViaScript
+ENDC
 	ld a, [wInitialMapSelectionIndex]
 	inc a
 	cp $7  ; number of maps to choose from at the start of play
@@ -2054,6 +2056,7 @@ ChooseInitialMap_GoldField: ; 0x1658f
 	ld hl, GoldStageInitialMaps
 	add hl, bc
 	ld a, [hl]
+.returnFromScriptLoad
 	ld [wCurrentMap], a
 	push af
 	lb de, $00, $48
@@ -2082,6 +2085,12 @@ ChooseInitialMap_GoldField: ; 0x1658f
 	xor a
 	ld [wNumMapMoves], a
 	ret
+	
+IF DEF(_TPP)
+.loadViaScript
+    ld a, [wMapToStart]
+    jr .returnFromScriptLoad
+ENDC
 
 GoldStageInitialMaps: ; 0x16605
 	db NEW_BARK_TOWN

@@ -105,10 +105,12 @@ ResolveBlueStagePinballLaunchCollision: ; 0x1c7d7
 ChooseInitialMap_BlueField: ; 0x1c839
 ; While waiting to launch the pinball, this quickly rotates the billboard with the initial
 ; maps the player can start on.
-	ld a, [hGameBoyColorFlag]
-	and a
-	callba nz, LoadGreyBillboardPaletteData
 .showNextMap
+IF DEF(_TPP)
+    ld a, [wScriptMode]
+	sub 1
+	jr z, .loadViaScript
+ENDC
 	ld a, [wInitialMapSelectionIndex]
 	inc a
 	cp $7  ; number of maps to choose from at the start of play
@@ -121,6 +123,7 @@ ChooseInitialMap_BlueField: ; 0x1c839
 	ld hl, BlueStageInitialMaps
 	add hl, bc
 	ld a, [hl]
+.returnFromScriptLoad
 	ld [wCurrentMap], a
 	push af
 	lb de, $00, $48
@@ -150,6 +153,12 @@ ChooseInitialMap_BlueField: ; 0x1c839
 	ld [wNumMapMoves], a
 	ret
 
+IF DEF(_TPP)
+.loadViaScript
+    ld a, [wMapToStart]
+    jr .returnFromScriptLoad
+ENDC
+
 BlueStageInitialMaps: ; 0x1c8af
 	db VIRIDIAN_CITY
 	db VIRIDIAN_FOREST
@@ -158,6 +167,7 @@ BlueStageInitialMaps: ; 0x1c8af
 	db VERMILION_STREETS
 	db ROCK_MOUNTAIN
 	db CELADON_CITY
+	
 
 UpdateForceFieldDirection: ; 0x1c8b6
 ; Every 5 seconds, decide which way the force field (in between slowpoke and cloyster) should point.
